@@ -1,0 +1,11 @@
+NCCL_P2P_DISABLE=1 OMP_NUM_THREADS=1 CUDA_VISIBLE_DEVICES=0,1,2,3 python -m torch.distributed.launch --nproc_per_node=4 --master_port='29500' main_pretrain.py \
+    --batch_size 64 \
+    --model mae_vit_small_patch16 \
+    --epochs 200 \
+    --norm_pix_loss \
+    --mask_ratio 0.9 \
+    --warmup_epochs 40 \
+    --blr 1.5e-4 --weight_decay 0.05 \
+    --data_path /nvme/ImageNet \
+    --output_dir /home/kang_you/mae-main-my/output_dir_mask_ratio0.9 \
+    --log_dir  /home/kang_you/mae-main-my/output_dir_mask_ratio0.9 \
